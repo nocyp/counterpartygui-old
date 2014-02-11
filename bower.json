@@ -1,0 +1,10 @@
+{
+  "name": "counterpatygui",
+  "version": "0.1",
+  "dependencies": {
+    "bootstrap": "3.1.0",
+    "jquery": "1.10.2",
+    "html5shiv": "3.7.0",
+    "respondJs": "1.4.2"
+  }
+}

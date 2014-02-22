@@ -20,6 +20,7 @@ function counterpartyAction(action) {
         params[name] = input.val();
     }
     params["unsigned"] = $('input[name=unsigned]')[0].checked ? "1" : "0";
+    params["passphrase"] = $('input[name=passphrase]').val();
     console.log(params);
     $('#walletLoading').modal('show');
     jQuery.ajax({

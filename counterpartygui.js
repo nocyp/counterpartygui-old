@@ -13,26 +13,28 @@ var counterpartyParams = {
 }
 
 function counterpartyAction(action) {
-    var params = {'action': action};
-    for (var p in counterpartyParams[action]) {
-        var name = counterpartyParams[action][p];
-        var input = $('div.form-group.'+name+'.'+action+'-tab .form-control');
-        params[name] = input.val();
-    }
-    params["unsigned"] = $('input[name=unsigned]')[0].checked ? "1" : "0";
-    params["passphrase"] = $('input[name=passphrase]').val();
-    $('#walletLoading').modal('show');
-    jQuery.ajax({
-        url:"/action",
-        method: "POST",
-        data: params,
-        success: function(data) {
-            $('#walletLoading').modal('hide');
-            $('#walletDialog #messageDialog').html(data['message']);
-            $('#walletDialog').modal('show');
-            $('input[name=passphrase]').val('');
+    if (confirm('hey, wait, have you thought about this?')) {
+        var params = {'action': action};
+        for (var p in counterpartyParams[action]) {
+            var name = counterpartyParams[action][p];
+            var input = $('div.form-group.'+name+'.'+action+'-tab .form-control');
+            params[name] = input.val();
         }
-    });
+        params["unsigned"] = $('input[name=unsigned]')[0].checked ? "1" : "0";
+        params["passphrase"] = $('input[name=passphrase]').val();
+        $('#walletLoading').modal('show');
+        jQuery.ajax({
+            url:"/action",
+            method: "POST",
+            data: params,
+            success: function(data) {
+                $('#walletLoading').modal('hide');
+                $('#walletDialog #messageDialog').html(data['message']);
+                $('#walletDialog').modal('show');
+                $('input[name=passphrase]').val('');
+            }
+        });
+    }
     return false;
 }
 

@@ -93,7 +93,7 @@
                                 <p class="help-block">The source address.</p>
                             </div>
 
-                            <div class="form-group destination send-tab issuance-tab">
+                            <div class="form-group destination send-tab">
                                 <label for="destination">Destination</label>
                                 <input type="text" class="form-control" name="destination">
                                 <p class="help-block">The destination address.</p>
@@ -138,16 +138,16 @@
                                 <p class="help-block">the number of blocks for which the order should be valid.</p>
                             </div>
 
-                            <div class="form-group fee_required order-tab">
-                                <label for="quantity">Fee required</label>
-                                <input type="text" class="form-control" name="fee_required">
-                                <p class="help-block">the miners' fee required to be paid by orders for them to match this one; in BTC; required iff buying BTC (may be zero, though).</p>
+                            <div class="form-group fee_fraction_required order-tab">
+                                <label for="fee_fraction_required">Fee fraction required</label>
+                                <input type="text" class="form-control" name="fee_fraction_required">
+                                <p class="help-block">the miners’ fee required for an order to match this one, as a fraction of the BTC to be bought.</p>
                             </div>
 
-                            <div class="form-group fee_provided order-tab">
-                                <label for="quantity">Fee provided</label>
-                                <input type="text" class="form-control" name="fee_provided">
-                                <p class="help-block">the miners' fee provided; in BTC; required iff selling BTC (should not be lower than is required for acceptance in a block).</p>
+                            <div class="form-group fee_fraction_provided order-tab">
+                                <label for="fee_fraction_provided">Fee fraction provided</label>
+                                <input type="text" class="form-control" name="fee_fraction_provided">
+                                <p class="help-block">the miners’ fee provided, as a fraction of the BTC to be sold.</p>
                             </div>
 
                             <div class="form-group order_match_id btcpay-tab">
@@ -160,6 +160,12 @@
                                 <label for="offer_hash">Offer Hash</label>
                                 <input type="text" class="form-control" name="offer_hash">
                                 <p class="help-block">the transaction hash of the order or bet.</p>
+                            </div>
+
+                            <div class="form-group transfer_destination issuance-tab">
+                                <label for="transfer_destination">Transfert destination</label>
+                                <input type="text" class="form-control" name="transfer_destination">
+                                <p class="help-block">for transfer of ownership of asset issuance rights.</p>
                             </div>
 
                             <div class="form-group description issuance-tab">
@@ -236,17 +242,17 @@
                             <div class="form-group text broadcast-tab">
                                 <label for="text">Text</label>
                                 <input type="text" class="form-control" name="text">
-                                <p class="help-block">the textual part of the broadcast.</p>
+                                <p class="help-block">the textual part of the broadcast (set to ‘LOCK’ to lock feed).</p>
                             </div>
                             <div class="form-group value broadcast-tab">
                                 <label for="value">Value</label>
                                 <input type="text" class="form-control" name="value">
                                 <p class="help-block">numerical value of the broadcast.</p>
                             </div>
-                            <div class="form-group fee_multiplier broadcast-tab">
-                                <label for="fee_multiplier">Fee multiplier</label>
-                                <input type="text" class="form-control" name="fee_multiplier">
-                                <p class="help-block">how much of every bet on this feed should go to its operator; a fraction of 1, (i.e. .05 is five percent).</p>
+                            <div class="form-group fee_fraction broadcast-tab">
+                                <label for="fee_fraction">Fee fraction</label>
+                                <input type="text" class="form-control" name="fee_fraction">
+                                <p class="help-block">the fraction of bets on this feed that go to its operator.</p>
                             </div>
 
                             <div class="form-group feed_address bet-tab">

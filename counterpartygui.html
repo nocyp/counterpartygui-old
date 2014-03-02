@@ -3,323 +3,556 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>CounterParty Wallet</title>
 
+    <!-- Google fonts -->
+    <link href="css/fonts.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap -->
-    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="lib/html5shiv/dist/html5shiv.js"></script>
-      <script src="lib/respondJs/dest/respond.min.js"></script>
+	<script src="lib/respondJs/dest/respond.min.js"></script>
     <![endif]-->
-    <link href="counterpartygui.css" rel="stylesheet">
+    
+    <!-- jquery Perfect-Scrollbar -->
+    <link href="css/perfect-scrollbar.css" rel="stylesheet">
+    <!-- Whirling Menu -->
+    <link href="css/whirling.css" rel="stylesheet" type="text/css" />
+    <!-- FancyFields -->
+    <link href="css/fancy-fields.css" rel="stylesheet" type="text/css" />
+    <!-- counterpartygui -->
+    <link href="css/counterpartygui.css" rel="stylesheet" />
+
 </head>
 <body>
 
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand active" href="#">CounterParty Wallet</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="http://www.blockscan.com/order_book.aspx" target="_blank">DEX</a></li>
-                    <li><a href="https://forum.counterparty.co" target="_blank">Forum</a></li>
-                    <li><a href="https://counterparty.co/news/" target="_blank">News</a></li>
+    <!-- MENU -->
+    <div class="navbar" role="navigation">
+        <div class="navmenu">
+            <div id="logo"></div>
+            <div id="title"></div>
+            <div style="float:right;">
+                <ul class="menu">
+                    <li class="active">
+                        <div id="menu1" class="menuitem"><div id="menu1b" class="btcommands" data-command="1">
+                            <a href="#send-tab" id="send" data-toggle="tab"></a>
+                        </div></div>
+                    </li>
+                    <li>
+                        <div id="menu2" class="menuitem"><div id="menu2b"></div></div>
+                        <ul class="submenu">
+                            <li class="btcommands" data-command="2"><a href="#order-tab" id="order" data-toggle="tab">Order</a></li>
+                            <li class="btcommands" data-command="3"><a href="#btcpay-tab" id="btcpay" data-toggle="tab">BTCPay</a></li>
+                            <li class="btcommands" data-command="4"><a href="#cancel-tab" id="cancel" data-toggle="tab">Cancel</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div id="menu3" class="menuitem"><div id="menu3b"></div></div>
+                        <ul class="submenu">
+                            <li class="btcommands" data-command="5"><a href="#" id="issuance">Issuance</a></li>
+                            <li class="btcommands" data-command="6"><a href="#" id="dividend">Dividend</a></li>
+                            <li class="btcommands" data-command="7"><a href="#" id="callback">Callback</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div id="menu4" class="menuitem"><div id="menu4b"></div></div>
+                        <ul class="submenu">
+                            <li class="btcommands" data-command="8"><a href="#" id="bet">Bet</a></li>
+                            <li class="btcommands" data-command="9"><a href="#" id="broadcast">Broadcast</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div id="menu5" class="menuitem"><div id="menu5b">Other</div></div>
+                        <ul class="submenu">
+                            <li class="btcommands"><a href="http://www.blockscan.com/order_book.aspx">DEX</a></li>
+                            <li class="btcommands"><a href="https://forum.counterparty.co">Forums</a></li>
+                            <li class="btcommands"><a href="https://counterparty.co/news/">News</a></li>
+                        </ul>
+                    </li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </div>
 
     <div class="container">
+
         <div class="row">
-            <div id="assets" class="col-md-4">
-                
+            <!-- LEFT SIDE TABS -->
+            <div id="assets" class="borders">
+                <div id="half" class="leftpanetop">
+                    
+                    <img src="images/titles/assets.png" class="img_title img_assets">
+                    <img src="images/titles/addresses.png" class="img_title img_addresses">
+                    <img src="images/titles/openorders.png" class="img_title img_openorders">
+                    <span id="openleftpanemenu" style="">&#x21e9;</span>
 
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#assets-tab" data-toggle="tab">Assets</a></li>
-                    <li><a href="#addresses-tab" data-toggle="tab">Addresses</a></li>
-                    <li><a href="#activeorders-tab" data-toggle="tab">Open orders</a></li>
-                    <li><a href="#activebets-tab" data-toggle="tab">Open bets</a></li>
-                    <li><a href="#history-tab" data-toggle="tab">History</a></li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane active" id="assets-tab"></div>
-                    <div class="tab-pane" id="addresses-tab"></div>
-                    <div class="tab-pane" id="activeorders-tab">Coming soon...</div>
-                    <div class="tab-pane" id="activebets-tab">Coming soon...</div>
-                    <div class="tab-pane" id="history-tab">Coming soon...</div>
-
+                    <ul class="leftpanemenu">
+                        <li data-pane="assets"><a href="#">Assets</a></li>
+                        <li data-pane="addresses"><a href="#">Addresses</a></li>
+                    </ul>                   
+                    
                 </div>
-
-            </div>
-            <div id="commands" class="col-md-8">
-               
-                
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#send-tab" data-toggle="tab">Send</a></li>
-                    <li><a href="#order-tab" data-toggle="tab">Order</a></li>
-                    <li><a href="#btcpay-tab" data-toggle="tab">BTCPay</a></li>
-                    <li><a href="#cancel-tab" data-toggle="tab">Cancel</a></li>
-                    <li><a href="#issuance-tab" data-toggle="tab">Issuance</a></li>
-                    <li><a href="#dividend-tab" data-toggle="tab">Dividend</a></li>
-                    <li><a href="#callback-tab" data-toggle="tab">Callback</a></li>
-                    <li><a href="#broadcast-tab" data-toggle="tab">Broadcast</a></li>
-                    <li><a href="#bet-tab" data-toggle="tab">Bet</a></li>
-                </ul>
-
                 <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane active" id="send-tab">
+                <div class="tab-content scroll lists suppressscrollx" style="position:relative;">
+                    <div class="tab-pane group active" id="assets-tab"></div>
+                    <div class="tab-pane group" id="addresses-tab"></div>
+                    <div class="tab-pane group" id="openorders-tab">Coming soon...</div>
+                    <div class="tab-pane group" id="activebets-tab">Coming soon...</div>
+                    <div class="tab-pane group" id="history-tab">Coming soon...</div>
+                </div>
+            </div>
+            
 
-                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(currentAction)">
+            <!-- Send Commands-->
+            <div id="commands1" class="boxes col-md-8 dropdown open" data-command="1">
+                <!-- Tab panes -->
+                <div class="borders send">
+                    <div class="tab-pane active" id="send-tab">
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="send" />
                             <div class="form-group source send-tab order-tab issuance-tab dividend-tab callback-tab broadcast-tab bet-tab">
                                 <label for="source">Source</label>
-                                <div class="source-select"></div>
-                                <p class="help-block">The source address.</p>
+                                <a href="#" class="tooltip-top" data-tooltip="The source address.">?</a>
+                                <div class="source-select "></div>
                             </div>
-
-                            <div class="form-group destination send-tab">
+                            <div class="form-group destination send-tab issuance-tab">
                                 <label for="destination">Destination</label>
-                                <input type="text" class="form-control" name="destination">
-                                <p class="help-block">The destination address.</p>
+                                <input type="text" class="form-control" name="destination" placeholder="The destination address." autocomplete="off" />
                             </div>
+				            <div id="half">
+                                <div class="form-group quantity send-tab leftdiv">
+                                    <label for="quantity">Quantity</label>
+                                    <input type="text" class="form-control" name="quantity" placeholder="the quantity of ASSET to send" autocomplete="off" />
+                                </div>
+                                <div class="form-group asset send-tab rightdiv">
+                                    <label for="asset">Asset</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the ASSET of which you would like to send QUANTITY.">?</a>
+                                    <div class="asset-select"></div>
+                                </div>
+				            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
+                                <label>
+                                    Test mode. Only display unsigned raw transaction.
+                                </label>
 
-                            <div class="form-group quantity send-tab">
-                                <label for="quantity">Quantity</label>
-                                <input type="text" class="form-control" name="quantity">
-                                <p class="help-block">the quantity of ASSET to send.</p>
                             </div>
-                            <div class="form-group asset send-tab">
-                                <label for="asset">Asset</label>
-                                <div class="asset-select"></div>
-                                <p class="help-block">the ASSET of which you would like to send QUANTITY.</p>
-                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>
 
-                            <div class="form-group give_quantity order-tab">
-                                <label for="quantity">Give quantity</label>
-                                <input type="text" class="form-control" name="give_quantity">
-                                <p class="help-block">the quantity of GIVE_ASSET that you are willing to give.</p>
-                            </div>
-                            <div class="form-group give_asset order-tab">
-                                <label for="asset">Give asset</label>
-                                <div class="asset-select"></div>
-                                <p class="help-block">the asset that you would like to sell.</p>
-                            </div>
 
-                            <div class="form-group get_quantity order-tab">
-                                <label for="quantity">Get quantity</label>
-                                <input type="text" class="form-control" name="get_quantity">
-                                <p class="help-block">the quantity of GET_ASSET that you would like to receive.</p>
-                            </div>
-                            <div class="form-group get_asset order-tab">
-                                <label for="asset">Get asset</label>
-                                <input type="text" class="form-control" name="get_asset">
-                                <p class="help-block">the asset that you would like to buy.</p>
-                            </div>
 
-                            <div class="form-group expiration order-tab">
-                                <label for="quantity">Expiration</label>
-                                <input type="text" class="form-control" name="expiration">
-                                <p class="help-block">the number of blocks for which the order should be valid.</p>
-                            </div>
+            <!-- Order Commands-->
+            <div id="commands2" class="boxes col-md-8 dropdown closed" data-command="2">
 
-                            <div class="form-group fee_fraction_required order-tab">
-                                <label for="fee_fraction_required">Fee fraction required</label>
-                                <input type="text" class="form-control" name="fee_fraction_required">
-                                <p class="help-block">the miners’ fee required for an order to match this one, as a fraction of the BTC to be bought.</p>
-                            </div>
+                <!-- Tab panes -->
+                <div class="borders order">
+                    <div class="tab-pane active" id="order-tab">
 
-                            <div class="form-group fee_fraction_provided order-tab">
-                                <label for="fee_fraction_provided">Fee fraction provided</label>
-                                <input type="text" class="form-control" name="fee_fraction_provided">
-                                <p class="help-block">the miners’ fee provided, as a fraction of the BTC to be sold.</p>
-                            </div>
-
-                            <div class="form-group order_match_id btcpay-tab">
-                                <label for="order_match_id">Order match ID</label>
-                                <input type="text" class="form-control" name="order_match_id">
-                                <p class="help-block">the concatenation of the hashes of the two transactions which compose the order match.</p>
-                            </div>
-
-                            <div class="form-group offer_hash cancel-tab">
-                                <label for="offer_hash">Offer Hash</label>
-                                <input type="text" class="form-control" name="offer_hash">
-                                <p class="help-block">the transaction hash of the order or bet.</p>
-                            </div>
-
-                            <div class="form-group transfer_destination issuance-tab">
-                                <label for="transfer_destination">Transfert destination</label>
-                                <input type="text" class="form-control" name="transfer_destination">
-                                <p class="help-block">for transfer of ownership of asset issuance rights.</p>
-                            </div>
-
-                            <div class="form-group description issuance-tab">
-                                <label for="description">Asset description</label>
-                                <input type="text" class="form-control" name="description">
-                                <p class="help-block">a description of the asset.</p>
-                            </div>
-
-                            <div class="form-group call_price issuance-tab">
-                                <label for="call_price">Call price</label>
-                                <input type="text" class="form-control" name="call_price">
-                                <p class="help-block">the price at which a callable asset may be called back (must agree with previous issuances).</p>
-                            </div>
-
-                            <div class="form-group quantity issuance-tab">
-                                <label for="quantity">Quantity</label>
-                                <input type="text" class="form-control" name="quantity">
-                                <p class="help-block">the quantity of ASSET to be issued.</p>
-                            </div>
-                            
-                            <div class="form-group divisible issuance-tab">
-                                <label for="divisible">Divisible</label>
-                                <select class="form-control" name="divisible">
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
-                                </select>
-                                <p class="help-block">whether or not the asset is divisible (must agree with previous issuances).</p>
-                            </div>
-
-                            <div class="form-group callable issuance-tab">
-                                <label for="callable">Callable</label>
-                                <select class="form-control" name="callable">
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
-                                </select>
-                                <p class="help-block">whether or not the asset is callable (must agree with previous issuances).</p>
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="order" />
+                            <div class="form-group source send-tab order-tab issuance-tab dividend-tab callback-tab broadcast-tab bet-tab">
+                                <label for="source">Source</label>
+                                <a href="#" class="tooltip-top" data-tooltip="The source address.">?</a>
+                                <div class="source-select "></div>
                             </div>
                            
-                            <div class="form-group call_date issuance-tab">
-                                <label for="call_date">Call date</label>
-                                <input type="text" class="form-control" name="call_date">
-                                <p class="help-block">the date from which a callable asset may be called back (must agree with previous issuances).</p>
+				            <div id="half">
+                                <div class="form-group give_quantity order-tab leftdiv">
+                                    <label for="quantity">Give quantity</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the quantity of GIVE_ASSET that you are willing to give.">?</a>
+                                    <input type="text" class="form-control" name="give_quantity" autocomplete="off" />
+                                </div>
+                                <div class="form-group give_asset order-tab rightdiv">
+                                    <label for="asset">Give asset</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the asset that you would like to sell.">?</a>
+                                    <div class="asset-select"></div>
+                                </div>
+				            </div>
+				            <div id="half">
+                                <div class="form-group get_quantity order-tab leftdiv">
+                                    <label for="quantity">Get quantity</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the quantity of GET_ASSET that you would like to receive.">?</a>
+                                    <input type="text" class="form-control" name="get_quantity" autocomplete="off" />
+                                </div>
+                                <div class="form-group get_asset order-tab rightdiv">
+                                    <label for="asset">Get asset</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the asset that you would like to buy.">?</a>
+                                    <input type="text" class="form-control" name="get_asset" autocomplete="off" />
+                                </div>
+				            </div>
+				            <div id="half">
+                                <div class="form-group fee_provided order-tab leftdiv">
+                                    <label for="quantity">Fee provided</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the miners' fee provided; in BTC; required if selling BTC.">?</a>
+                                    <input type="text" class="form-control" name="fee_provided" autocomplete="off" />
+                                </div>
+                                <div class="form-group fee_required order-tab rightdiv">
+                                    <label for="quantity">Fee required</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the miners' fee required to be paid by orders for them to match this one; in BTC.">?</a>
+                                    <input type="text" class="form-control" name="fee_required" autocomplete="off" />
+                                </div>
+				            </div>
+				            <div id="half">                         
+                                <div class="form-group expiration order-tab leftdiv">
+                                    <label for="quantity">Expiration</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the number of blocks for which the order should be valid.">?</a>
+                                    <input type="text" class="form-control" name="expiration" autocomplete="off" />
+                                </div>
                             </div>
-
-                            <div class="form-group call_price issuance-tab">
-                                <label for="call_price">Call price</label>
-                                <input type="text" class="form-control" name="call_price">
-                                <p class="help-block">the price at which a callable asset may be called back (must agree with previous issuances).</p>
-                            </div>
-
-                            <div class="form-group asset dividend-tab">
-                                <label for="asset">Asset</label>
-                                <div class="asset-select"></div>
-                                <p class="help-block">the asset to which pay dividends.</p>
-                            </div>
-                            <div class="form-group quantity_per_share dividend-tab">
-                                <label for="quantity_per_share">Quantity per share</label>
-                                <input type="text" class="form-control" name="quantity_per_share">
-                                <p class="help-block">the quantity of XCP to be paid per unit (satoshi) held of ASSET.</p>
-                            </div>
-
-                            <div class="form-group asset callback-tab">
-                                <label for="asset">Asset</label>
-                                <div class="asset-select"></div>
-                                <p class="help-block">the asset to callback.</p>
-                            </div>
-                            <div class="form-group fraction_per_share callback-tab">
-                                <label for="fraction_per_share">Fraction per share</label>
-                                <input type="text" class="form-control" name="fraction_per_share">
-                                <p class="help-block">the fraction of ASSET to call back.</p>
-                            </div>
-
-
-                            <div class="form-group text broadcast-tab">
-                                <label for="text">Text</label>
-                                <input type="text" class="form-control" name="text">
-                                <p class="help-block">the textual part of the broadcast (set to ‘LOCK’ to lock feed).</p>
-                            </div>
-                            <div class="form-group value broadcast-tab">
-                                <label for="value">Value</label>
-                                <input type="text" class="form-control" name="value">
-                                <p class="help-block">numerical value of the broadcast.</p>
-                            </div>
-                            <div class="form-group fee_fraction broadcast-tab">
-                                <label for="fee_fraction">Fee fraction</label>
-                                <input type="text" class="form-control" name="fee_fraction">
-                                <p class="help-block">the fraction of bets on this feed that go to its operator.</p>
-                            </div>
-
-                            <div class="form-group feed_address bet-tab">
-                                <label for="feed_address">Feed address</label>
-                                <input type="text" class="form-control" name="feed_address">
-                                <p class="help-block">the address which publishes the feed to bet on.</p>
-                            </div>
-                            <div class="form-group bet_type bet-tab">
-                                <label for="bet_type">Bet type</label>
-                                <select class="form-control" name="bet_type">
-                                    <option value="0">BullCFD</option>
-                                    <option value="1">BearCFD</option>
-                                    <option value="2">Equal</option>
-                                    <option value="3">NotEqual</option>
-                                </select>
-                                <p class="help-block">the bet type.</p>
-                            </div>
-                            <div class="form-group deadline bet-tab">
-                                <label for="deadline">Deadline</label>
-                                <input type="text" class="form-control" name="deadline">
-                                <p class="help-block">the date and time at which the bet should be decided/settled.</p>
-                            </div>
-                            <div class="form-group wager bet-tab">
-                                <label for="wager">Wager</label>
-                                <input type="text" class="form-control" name="wager">
-                                <p class="help-block">the quantity of XCP to wager.</p>
-                            </div>
-                            <div class="form-group counterwager bet-tab">
-                                <label for="counterwager">Counterwager</label>
-                                <input type="text" class="form-control" name="counterwager">
-                                <p class="help-block">the minimum quantity of XCP to be wagered by the user to bet against you, if he were to accept the whole thing.</p>
-                            </div>
-                            <div class="form-group target_value bet-tab">
-                                <label for="target_value">Target value</label>
-                                <input type="text" class="form-control" name="target_value">
-                                <p class="help-block">target value for Equal/NotEqual bet.</p>
-                            </div>
-                            <div class="form-group leverage bet-tab">
-                                <label for="leverage">Leverage</label>
-                                <input type="text" class="form-control" name="leverage">
-                                <p class="help-block">leverage, as a fraction of 5040.</p>
-                            </div>
-                            <div class="form-group expiration bet-tab">
-                                <label for="expiration">expiration</label>
-                                <input type="text" class="form-control" name="expiration">
-                                <p class="help-block">the number of blocks for which the bet should be valid.</p>
-                            </div>
-
                             <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
                                 <label>
-                                  <input type="checkbox" name="unsigned" value="1" checked> Test mode. Only display unsigned raw transaction.
+                                    Test mode. Only display unsigned raw transaction.
                                 </label>
                             </div>
-                            <div class="passphrase">
-                                <label for="passphrase">Passphrase</label>
-                                <input type="password" class="form-control" name="passphrase">
-                                <p class="help-block">the passphrase to unlock bicoind or bitcoinqt for 60 seconds.</p>
-                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>
 
-                            <button type="submit" class="btn btn-default">Submit</button>
+
+
+            <!-- BTCpay Commands-->
+            <div id="commands3" class="boxes col-md-8 dropdown closed" data-command="3">
+                <!-- Tab panes -->
+                <div class="borders btcpay">
+                    <div class="tab-pane active" id="btcpay-tab">
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="btcpay" />
+                            <div class="form-group order_match_id btcpay-tab">
+                                <label for="order_match_id">Order match ID</label>
+                                <input type="text" class="form-control" name="order_match_id" placeholder="The concatenation of the hashes of the two transactions which compose the order match." autocomplete="off" />
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="unsigned" value="1" checked> Test mode. Only display unsigned raw transaction.
+                                </label>
+                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
                         </form>
 
                     </div>
                 </div>
+				<!-- Tab Panes -->
             </div>
-        </div>
-    </div><!-- /.container -->
+
+
+
+            <!-- Cancel Commands-->
+            <div id="commands4" class="boxes col-md-8 dropdown closed"  data-command="4">
+                <!-- Tab panes -->
+                <div class="borders cancel">
+                    <div class="tab-pane active" id="cancel-tab">
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="cancel" />
+                            <div class="form-group offer_hash cancel-tab">
+                                <label for="offer_hash">Offer Hash</label>
+                                <input type="text" class="form-control" name="offer_hash" placeholder="The transaction hash of the order or bet." autocomplete="off" />
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
+                                <label>
+                                    Test mode. Only display unsigned raw transaction.
+                                </label>
+                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>   
+
+
+
+            <!-- Issuance Commands-->
+            <div id="commands5" class="boxes col-md-8 dropdown closed"  data-command="5">
+            <!-- Tab panes -->
+                <div class="borders issuance">
+                    <div class="tab-pane active" id="issuance-tab">
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="issuance" />
+                            <div class="form-group source send-tab order-tab issuance-tab dividend-tab callback-tab broadcast-tab bet-tab">
+                                <label for="source">Source</label>
+                                <a href="#" class="tooltip-top" data-tooltip="The source address.">?</a>
+                                <div class="source-select "></div>
+                            </div>
+                            <div class="form-group destination send-tab issuance-tab">
+                                <label for="destination">Destination</label>
+                                <input type="text" class="form-control" name="destination" placeholder="The destination address." autocomplete="off" />
+                            </div>
+                            <div class="form-group asset_name send-tab issuance-tab">
+                                <label for="asset_name">Asset name</label>
+                                <input type="text" class="form-control" name="asset_name" placeholder="The name of the asset." autocomplete="off" />
+                            </div>                  
+                            <div class="form-group description issuance-tab">
+                                <label for="description">Asset description</label>
+                                <input type="text" class="form-control" name="description" placeholder="A description of the asset. " autocomplete="off" />
+                            </div>
+                            <div id="half">
+                                <div class="form-group leftdiv issuance-tab">
+                                    <label for="divisible">Divisible</label><a href="#" class="tooltip-top" data-tooltip="whether or not the asset is divisible (must agree with previous issuances).">?</a><br />
+                                    <select class="form-control" name="divisible">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group rightdiv quantity issuance-tab">
+                                    <label for="quantity">Quantity</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the quantity of ASSET to be issued.">?</a>
+                                    <input type="text" class="form-control" name="quantity" autocomplete="off" />
+                                </div>
+                                
+                            </div>
+    					    <div id="half">
+                                <div class="form-group leftdiv issuance-tab">
+                                    <label for="callable">Callable</label><a href="#" class="tooltip-top" data-tooltip="whether or not the asset is callable (must agree with previous issuances).">?</a><br />
+                                    <select class="form-control" name="callable">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+				            <div id="half">
+                                <div class="form-group call_date issuance-tab leftdiv">
+                                    <label for="call_date">Call date</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the date from which a callable asset may be called back (must agree with previous issuances).">?</a><br />
+                                    <input type="text" class="form-control" name="call_date" autocomplete="off" />
+                                </div>
+                                <div class="form-group call_price issuance-tab rightdiv">
+                                    <label for="call_price">Call price</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the price at which a callable asset may be called back (must agree with previous issuances).">?</a><br />
+                                    <input type="text" class="form-control" name="call_price" autocomplete="off" />
+                                </div>
+				            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
+                                <label>
+                                    Test mode. Only display unsigned raw transaction.
+                                </label>
+                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>   
+
+
+
+            <!-- Dividend Commands-->
+            <div id="commands6" class="boxes col-md-8 dropdown closed" data-command="6">
+            <!-- Tab panes -->
+                <div class="borders dividend">
+                    <div class="tab-pane active" id="dividend-tab">
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="dividend" />
+                            <div class="form-group source send-tab order-tab issuance-tab dividend-tab callback-tab broadcast-tab bet-tab">
+                                <label for="source">Source</label>
+                                <a href="#" class="tooltip-top" data-tooltip="The source address.">?</a>
+                                <div class="source-select "></div>
+                            </div>
+                            <div id="half">
+                                <div class="form-group quantity_per_share leftdiv dividend-tab">
+                                    <label for="quantity_per_share">Quantity per share</label>
+                                    <input type="text" class="form-control" name="quantity_per_share" placeholder="the quantity of XCP to be paid per unit (satoshi) held of ASSET." autocomplete="off" />
+                                </div>
+                                <div class="form-group asset rightdiv dividend-tab">
+                                    <label for="asset">Asset</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="The asset to which pay dividends.">?</a>
+                                    <div class="asset-select"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
+                                <label>
+                                    Test mode. Only display unsigned raw transaction.
+                                </label>
+                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>  
+
+
+
+            <!-- Callback Commands-->
+            <div id="commands7" class="boxes col-md-8 dropdown closed"  data-command="7">
+            <!-- Tab panes -->
+                <div class="borders callback">
+                    <div class="tab-pane active" id="callback-tab">
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="callback" />
+                            <div class="form-group source send-tab order-tab issuance-tab dividend-tab callback-tab broadcast-tab bet-tab">
+                                <label for="source">Source</label>
+                                <a href="#" class="tooltip-top" data-tooltip="The source address.">?</a>
+                                <div class="source-select "></div>
+                            </div>
+                            <div id="half">
+                                <div class="form-group fraction_per_share leftdiv callback-tab">
+                                    <label for="fraction_per_share">Fraction per share</label>
+                                    <input type="text" class="form-control" name="fraction_per_share" placeholder="the fraction of ASSET to call back." autocomplete="off" />
+                                </div>
+                                <div class="form-group asset rightdiv callback-tab">
+                                    <label for="asset">Asset</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the asset to callback.">?</a>
+                                    <div id="half" class="asset-select"></div>
+                                </div>                               
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
+                                <label>
+                                    Test mode. Only display unsigned raw transaction.
+                                </label>
+                            </div>
+                          <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>   
+
+
+
+            <!-- Bet Commands-->
+            <div id="commands8" class="boxes col-md-8 dropdown closed"  data-command="8">
+            <!-- Tab panes -->
+                <div class="borders bet">
+                    <div class="tab-pane active" id="bet-tab">
+
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="bet" />
+                            <div class="form-group source send-tab order-tab issuance-tab dividend-tab callback-tab broadcast-tab bet-tab">
+                                <label for="source">Source</label>
+                                <a href="#" class="tooltip-top" data-tooltip="The source address.">?</a>
+                                <div class="source-select "></div>
+                            </div>
+                            <div class="form-group feed_address bet-tab">
+                                <label for="feed_address">Feed address</label>
+                                <input type="text" class="form-control" name="feed_address" placeholder="the address which publishes the feed to bet on." autocomplete="off" />
+                            </div>
+				            <div id="half">
+                                <div class="form-group bet_type bet-tab leftdiv">
+                                    <label for="bet_type">Bet type</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the bet type.">?</a><br />
+                                    <select class="form-control" name="bet_type">
+                                        <option value="0">BullCFD</option>
+                                        <option value="1">BearCFD</option>
+                                        <option value="2">Equal</option>
+                                        <option value="3">NotEqual</option>
+                                    </select>
+                                </div>
+                                <div class="form-group deadline bet-tab rightdiv">
+                                    <label for="deadline">Deadline</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the date and time at which the bet should be decided/settled.">?</a>
+                                    <input type="text" class="form-control" name="deadline" autocomplete="off" />
+                                </div>
+				            </div>
+				            <div id="half">
+                                <div class="form-group wager bet-tab leftdiv">
+                                    <label for="wager">Wager</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the quantity of XCP to wager.">?</a>
+                                    <input type="text" class="form-control" name="wager" autocomplete="off" />
+                                </div>
+                                <div class="form-group counterwager bet-tab rightdiv">
+                                    <label for="counterwager">Counterwager</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the minimum quantity of XCP to be wagered by the user to bet against you, if he were to accept the whole thing.">?</a>
+                                    <input type="text" class="form-control" name="counterwager" autocomplete="off" />
+                                </div>
+				            </div>
+				            <div id="half">
+                                <div class="form-group target_value bet-tab leftdiv">
+                                    <label for="target_value">Target value</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="target value for Equal/NotEqual bet.">?</a>
+                                    <input type="text" class="form-control" name="target_value" autocomplete="off" />
+                                </div>
+                                <div class="form-group leverage bet-tab rightdiv">
+                                    <label for="leverage">Leverage</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="leverage, as a fraction of 5040.">?</a>
+                                    <input type="text" class="form-control" name="leverage" autocomplete="off" />
+                                </div>
+				            </div>
+				            <div id="half">
+                                <div class="form-group expiration bet-tab leftdiv">
+                                    <label for="expiration">Expiration</label>
+                                    <a href="#" class="tooltip-top" data-tooltip="the number of blocks for which the bet should be valid.">?</a>
+                                    <input type="text" class="form-control" name="expiration" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
+                                <label>
+                                    Test mode. Only display unsigned raw transaction.
+                                </label>
+                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>   
+
+
+
+            <!-- Broadcast Commands-->
+            <div id="commands9" class="boxes col-md-8 dropdown closed"  data-command="9">
+            <!-- Tab panes -->
+                <div class="borders broadcast">
+                    <div class="tab-pane active" id="broadcast-tab">
+                        <form role="form" action="/counterpartyd" onsubmit="return counterpartyAction(this)">
+                            <input type="hidden" name="action" value="broadcast" />
+                            <div class="form-group source send-tab order-tab issuance-tab dividend-tab callback-tab broadcast-tab bet-tab">
+                                <label for="source">Source</label>
+                                <a href="#" class="tooltip-top" data-tooltip="The source address.">?</a>
+                                <div class="source-select "></div>
+                            </div>
+                            <div class="form-group text broadcast-tab">
+                                <label for="text">Text</label>
+                                <input type="text" class="form-control" name="text" placeholder="the textual part of the broadcast." autocomplete="off" />
+                            </div>
+                            <div class="form-group value broadcast-tab">
+                                <label for="value">Value</label>
+                                <input type="text" class="form-control" name="value" placeholder="numerical value of the broadcast." autocomplete="off" />
+                            </div>
+                            <div class="form-group fee_multiplier broadcast-tab">
+                                <label for="fee_multiplier">Fee multiplier</label>
+                                <a href="#" class="tooltip-top" data-tooltip="How much of every bet on this feed should go to its operator; a fraction of 1, (i.e. &nbsp;&nbsp;0.05 is five percent).">?</a>
+                                <input type="text" class="form-control" name="fee_multiplier" autocomplete="off" />
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="unsigned" value="1" checked> 
+                                <label>
+                                    Test mode. Only display unsigned raw transaction.
+                                </label>
+                            </div>
+                            <button type="submit" class="submitbtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+				<!-- Tab Panes -->
+            </div>
+
+
+        </div><!-- /.row -->
+    </div>
+    <!-- /.container -->
 
     <!-- Modal -->
     <div class="modal fade" id="walletLoading" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="walletLoading" aria-hidden="true">
@@ -340,7 +573,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Counterparty message</h4>
+                    <h4 class="modal-title" id="walletLoading">Counterparty message</h4>
                 </div>
                 <div class="modal-body">
                     <div id="messageDialog">
@@ -351,13 +584,13 @@
         </div>
     </div>
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="lib/jquery/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="lib/jquery-ui/ui/jquery-ui.custom.js" type="text/javascript"></script>
+    <script src="lib/perfect-scrollbar/min/perfect-scrollbar-0.4.8.with-mousewheel.min.js"></script>
+    <script src="lib/fancy-fields/src/fancyfields-1.2.min.js" type="text/javascript"></script>  
+    <script src="lib/fancy-fields/src/fancyfields.csb.min.js" type="text/javascript"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="counterpartygui.js"></script>
-    
-
 </body>
 </html>

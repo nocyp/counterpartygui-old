@@ -1,0 +1,14 @@
+{
+  "name": "fancy-fields",
+  "homepage": "https://github.com/giladk/fancy-fields",
+  "version": "1.2.5",
+  "_release": "1.2.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.2.5",
+    "commit": "bf8c40d127909bc3553f3912aec276e5abc3fe4d"
+  },
+  "_source": "https://github.com/giladk/fancy-fields.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/giladk/fancy-fields.git"
+}

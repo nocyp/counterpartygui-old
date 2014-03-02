@@ -115,10 +115,6 @@
 }
 
 // Drop shadows
-//
-// Note: Deprecated `.box-shadow()` as of v3.1.0 since all of Bootstrap's
-//   supported browsers that have box shadow capabilities now support the
-//   standard `box-shadow` property.
 .box-shadow(@shadow) {
   -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
           box-shadow: @shadow;
@@ -205,30 +201,6 @@
 .animation(@animation) {
   -webkit-animation: @animation;
           animation: @animation;
-}
-.animation-name(@name) {
-  -webkit-animation-name: @name;
-          animation-name: @name;
-}
-.animation-duration(@duration) {
-  -webkit-animation-duration: @duration;
-          animation-duration: @duration;
-}
-.animation-timing-function(@timing-function) {
-  -webkit-animation-timing-function: @timing-function;
-          animation-timing-function: @timing-function;
-}
-.animation-delay(@delay) {
-  -webkit-animation-delay: @delay;
-          animation-delay: @delay;
-}
-.animation-iteration-count(@iteration-count) {
-  -webkit-animation-iteration-count: @iteration-count;
-          animation-iteration-count: @iteration-count;
-}
-.animation-direction(@direction) {
-  -webkit-animation-direction: @direction;
-          animation-direction: @direction;
 }
 
 // Backface visibility
@@ -581,24 +553,6 @@
   }
 }
 
-// Contextual backgrounds
-// -------------------------
-.bg-variant(@color) {
-  background-color: @color;
-  a&:hover {
-    background-color: darken(@color, 10%);
-  }
-}
-
-// Typography
-// -------------------------
-.text-emphasis-variant(@color) {
-  color: @color;
-  a&:hover {
-    color: darken(@color, 10%);
-  }
-}
-
 // Navbar vertical align
 // -------------------------
 // Vertically center elements in the navbar.
@@ -655,113 +609,30 @@
   &:extend(.clearfix all);
 }
 
-// Generate the extra small columns
-.make-xs-column(@columns; @gutter: @grid-gutter-width) {
-  position: relative;
-  float: left;
-  width: percentage((@columns / @grid-columns));
-  min-height: 1px;
-  padding-left:  (@gutter / 2);
-  padding-right: (@gutter / 2);
-}
-.make-xs-column-offset(@columns) {
-  @media (min-width: @screen-xs-min) {
-    margin-left: percentage((@columns / @grid-columns));
-  }
-}
-.make-xs-column-push(@columns) {
-  @media (min-width: @screen-xs-min) {
-    left: percentage((@columns / @grid-columns));
-  }
-}
-.make-xs-column-pull(@columns) {
-  @media (min-width: @screen-xs-min) {
-    right: percentage((@columns / @grid-columns));
-  }
-}
-
-
-// Generate the small columns
-.make-sm-column(@columns; @gutter: @grid-gutter-width) {
-  position: relative;
-  min-height: 1px;
-  padding-left:  (@gutter / 2);
-  padding-right: (@gutter / 2);
-
-  @media (min-width: @screen-sm-min) {
-    float: left;
-    width: percentage((@columns / @grid-columns));
-  }
-}
-.make-sm-column-offset(@columns) {
-  @media (min-width: @screen-sm-min) {
-    margin-left: percentage((@columns / @grid-columns));
-  }
-}
-.make-sm-column-push(@columns) {
-  @media (min-width: @screen-sm-min) {
-    left: percentage((@columns / @grid-columns));
-  }
-}
-.make-sm-column-pull(@columns) {
-  @media (min-width: @screen-sm-min) {
-    right: percentage((@columns / @grid-columns));
-  }
-}
-
-
-// Generate the medium columns
-.make-md-column(@columns; @gutter: @grid-gutter-width) {
-  position: relative;
-  min-height: 1px;
-  padding-left:  (@gutter / 2);
-  padding-right: (@gutter / 2);
-
-  @media (min-width: @screen-md-min) {
-    float: left;
-    width: percentage((@columns / @grid-columns));
-  }
-}
-.make-md-column-offset(@columns) {
-  @media (min-width: @screen-md-min) {
-    margin-left: percentage((@columns / @grid-columns));
-  }
-}
-.make-md-column-push(@columns) {
-  @media (min-width: @screen-md-min) {
-    left: percentage((@columns / @grid-columns));
-  }
-}
-.make-md-column-pull(@columns) {
-  @media (min-width: @screen-md-min) {
-    right: percentage((@columns / @grid-columns));
-  }
-}
 
 
 // Generate the large columns
-.make-lg-column(@columns; @gutter: @grid-gutter-width) {
+.make-column(@columns; @gutter: @grid-gutter-width) {
   position: relative;
+  // Prevent columns from collapsing when empty
   min-height: 1px;
+  // Inner gutter via padding
   padding-left:  (@gutter / 2);
   padding-right: (@gutter / 2);
-
-  @media (min-width: @screen-lg-min) {
-    float: left;
-    width: percentage((@columns / @grid-columns));
-  }
 }
-.make-lg-column-offset(@columns) {
+
+// Generate the large column offsets
+.make-column-offset(@columns) {
   @media (min-width: @screen-lg-min) {
     margin-left: percentage((@columns / @grid-columns));
   }
 }
-.make-lg-column-push(@columns) {
+.make-column-push(@columns) {
   @media (min-width: @screen-lg-min) {
     left: percentage((@columns / @grid-columns));
   }
 }
-.make-lg-column-pull(@columns) {
+.make-column-pull(@columns) {
   @media (min-width: @screen-lg-min) {
     right: percentage((@columns / @grid-columns));
   }
@@ -776,11 +647,11 @@
 .make-grid-columns() {
   // Common styles for all sizes of grid columns, widths 1-12
   .col(@index) when (@index = 1) { // initial
-    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    @item: ~".col-@{index}";
     .col((@index + 1), @item);
   }
   .col(@index, @list) when (@index =< @grid-columns) { // general; "=<" isn't a typo
-    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    @item: ~".col-@{index}";
     .col((@index + 1), ~"@{list}, @{item}");
   }
   .col(@index, @list) when (@index > @grid-columns) { // terminal
@@ -796,13 +667,13 @@
   .col(1); // kickstart it
 }
 
-.make-grid-columns-float(@class) {
+.make-grid-columns-float() {
   .col(@index) when (@index = 1) { // initial
-    @item: ~".col-@{class}-@{index}";
+    @item: ~".col-@{index}";
     .col((@index + 1), @item);
   }
   .col(@index, @list) when (@index =< @grid-columns) { // general
-    @item: ~".col-@{class}-@{index}";
+    @item: ~".col-@{index}";
     .col((@index + 1), ~"@{list}, @{item}");
   }
   .col(@index, @list) when (@index > @grid-columns) { // terminal
@@ -813,32 +684,32 @@
   .col(1); // kickstart it
 }
 
-.calc-grid(@index, @class, @type) when (@type = width) and (@index > 0) {
-  .col-@{class}-@{index} {
+.calc-grid(@index,@type) when (@type = width) and (@index > 0) {
+  .col-@{index} {
     width: percentage((@index / @grid-columns));
   }
 }
-.calc-grid(@index, @class, @type) when (@type = push) {
-  .col-@{class}-push-@{index} {
+.calc-grid(@index, @type) when (@type = push) {
+  .col-push-@{index} {
     left: percentage((@index / @grid-columns));
   }
 }
-.calc-grid(@index, @class, @type) when (@type = pull) {
-  .col-@{class}-pull-@{index} {
+.calc-grid(@index, @type) when (@type = pull) {
+  .col-pull-@{index} {
     right: percentage((@index / @grid-columns));
   }
 }
-.calc-grid(@index, @class, @type) when (@type = offset) {
-  .col-@{class}-offset-@{index} {
+.calc-grid(@index, @type) when (@type = offset) {
+  .col-offset-@{index} {
     margin-left: percentage((@index / @grid-columns));
   }
 }
 
 // Basic looping in LESS
-.make-grid(@index, @class, @type) when (@index >= 0) {
-  .calc-grid(@index, @class, @type);
+.make-grid(@index, @type) when (@index >= 0) {
+  .calc-grid(@index, @type);
   // next iteration
-  .make-grid((@index - 1), @class, @type);
+  .make-grid((@index - 1),  @type);
 }
 
 
@@ -872,10 +743,6 @@
     color: @text-color;
     border-color: @border-color;
     background-color: @background-color;
-  }
-  // Optional feedback icon
-  .form-control-feedback {
-    color: @text-color;
   }
 }
 
@@ -919,8 +786,7 @@
     line-height: @input-height;
   }
 
-  textarea&,
-  select[multiple]& {
+  textarea& {
     height: auto;
   }
 }

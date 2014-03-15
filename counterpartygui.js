@@ -10,7 +10,7 @@ var counterpartyParams = {
     'btcpay': ['order_match_id'],
     'cancel': ['offer_hash'],
     'issuance': ['source', 'transfer_destination', 'asset_name', 'quantity', 'divisible', 'callable', 'call_date', 'call_price', 'description'],
-    'dividend': ['source', 'asset', 'quantity_per_share'],
+    'dividend': ['source', 'asset', 'quantity_per_share', 'dividend_asset'],
     'callback': ['source', 'asset', 'fraction_per_share'],
     'broadcast': ['source', 'text', 'value', 'fee_fraction'],
     'bet': ['source', 'feed_address', 'bet_type', 'deadline', 'wager', 'counterwager', 'target_value', 'leverage', 'expiration']

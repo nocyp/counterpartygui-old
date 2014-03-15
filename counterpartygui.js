@@ -1,4 +1,8 @@
 var currentAction = 'send';
+if (typeof MODE == "undefined") {
+    MODE = "gui";
+}
+console.log("MODE: "+MODE);
 
 var counterpartyParams = {
     'send': ['source', 'destination', 'quantity', 'asset'],
@@ -20,8 +24,12 @@ function counterpartyAction(action) {
             var input = $('div.form-group.'+name+'.'+action+'-tab .form-control');
             params[name] = input.val();
         }
-        params["unsigned"] = $('input[name=unsigned]')[0].checked ? "1" : "0";
-        params["passphrase"] = $('input[name=passphrase]').val();
+        if (MODE=="gui") {
+            params["unsigned"] = $('input[name=unsigned]')[0].checked ? "1" : "0";
+            params["passphrase"] = $('input[name=passphrase]').val();
+        } else {
+            params["pubkey"] = $('input[name=pubkey]').val();
+        }
         $('#walletLoading').modal('show');
         jQuery.ajax({
             url:"/action",
@@ -29,9 +37,13 @@ function counterpartyAction(action) {
             data: params,
             success: function(data) {
                 $('#walletLoading').modal('hide');
-                $('#walletDialog #messageDialog').html(data['message']);
-                $('#walletDialog').modal('show');
-                $('input[name=passphrase]').val('');
+                if (MODE=="gui") {
+                    $('#walletDialog #messageDialog').html(data['message']);
+                    $('#walletDialog').modal('show');
+                    $('input[name=passphrase]').val('');
+                } else {
+                    $('#unsigned_hex').val(data['message']);
+                }
             }
         });
     }
@@ -46,7 +58,7 @@ function genAssetRow(assetName, data) {
     return '<tr><td class="asset-name">'+assetName+'</td><td class="amount">'+value+'</td></tr>';
 }
 
-function genAssetTable(data) {
+function genAssetsLists(data) {
     var select = $('<select></select>').addClass('form-control').attr('name', 'asset');
     var walletTable = $('<table></table>').addClass('table').addClass('table-striped').addClass('assets-list');
     var tableBody = $('<tbody></tbody>');
@@ -70,7 +82,7 @@ function genAssetTable(data) {
     $('div.asset-select').append(select);
 }
 
-function genSelectSource(data) {
+function genAddressesLists(data) {
 
     var select = $('<select></select>').addClass('form-control').attr('name', 'source');
     var walletTable = $('<table></table>').addClass('table').addClass('table-striped').addClass('assets-list');
@@ -96,9 +108,13 @@ function genSelectSource(data) {
     $('div.source-select').append(select);
 }
 
+function genLists(data) {
+    genAssetsLists(data);
+    genAddressesLists(data);
+}
+
 function initWallet(data) {
-    genAssetTable(data);
-    genSelectSource(data);
+    genLists(data);
     $('#walletLoading').modal('hide');
 }
 
@@ -111,22 +127,32 @@ function displayForm(action) {
     $('#commands #send-tab').show();
 }
 
-$('#walletLoading').modal('show');
-jQuery.ajax({
-    url:"/wallet",
-    method: "GET",
-    complete: function (jqXHR, textStatus) {
-        console.log('status:'+textStatus);
-    },
-    success: initWallet
-});
+function loadWallet() {
+    $('#walletLoading').modal('show');
+    jQuery.ajax({
+        url:"/wallet?rand="+Math.random(), //rand to avoid cache
+        method: "GET",
+        complete: function (jqXHR, textStatus) {
+            console.log('status:'+textStatus);
+        },
+        success: initWallet
+    });
+}
 
-$('#commands ul.nav-tabs a').click(function (e) {
-    
+$('#commands ul.nav-tabs a').click(function (e) {   
     e.preventDefault();
     //$(this).tab('show')
     var action = $(this).attr('href').substr(1).split('-').shift();
     displayForm(action);
 })
 
-displayForm('send');
+$(document).ready(function() {
+    displayForm('send');
+
+    if (MODE=="gui") {
+        loadWallet();
+    }
+
+});
+
+

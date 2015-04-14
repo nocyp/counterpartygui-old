@@ -63,14 +63,14 @@ function genAssetsLists(data) {
     var walletTable = $('<table></table>').addClass('table').addClass('table-striped').addClass('assets-list');
     var tableBody = $('<tbody></tbody>');
 
-    tableBody.append(genAssetRow('XCP', data['totals']));
-    tableBody.append(genAssetRow('BTC', data['totals']));
+    tableBody.append(genAssetRow('BLUR', data['totals']));
+    tableBody.append(genAssetRow('CRAVE', data['totals']));
 
-    select.append('<option value="XCP">XCP</option>');
-    select.append('<option value="BTC">BTC</option>');
+    select.append('<option value="BLUR">BLUR</option>');
+    select.append('<option value="CRAVE">CRAVE</option>');
 
     for (var assetName in data['totals']) {
-        if (assetName!='BTC' &&  assetName!='XCP') {
+        if (assetName!='CRAVE' &&  assetName!='BLUR') {
             tableBody.append(genAssetRow(assetName, data['totals']));
             select.append('<option value="'+assetName+'">'+assetName+'</option>');
         }
